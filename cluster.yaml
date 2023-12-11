@@ -1,0 +1,20 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: eks-pod-identity-demo
+  region: us-west-2
+  version: "1.28"
+
+addons:
+  - name: vpc-cni
+  - name: coredns
+  - name: kube-proxy
+  - name: eks-pod-identity-agent
+    
+managedNodeGroups:
+  - name: eks-shared-demo-mng
+    instanceType: m6a.large
+    privateNetworking: true
+    minSize: 2
+    desiredCapacity: 2
+    maxSize: 5
